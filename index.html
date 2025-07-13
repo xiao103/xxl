@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,7 @@
             --candy-purple: #A36BE0;
             --candy-pink: #E06BA3;
         }
-        
+
         body {
             font-family: 'Comic Sans MS', 'Marker Felt', '华文琥珀', cursive, sans-serif;
             background-color: #FFF5F5;
@@ -29,11 +30,11 @@
             padding: 20px;
             color: #5A3D5C;
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255,214,231,0.5) 0%, transparent 20%), 
-                radial-gradient(circle at 90% 80%, rgba(212,241,249,0.5) 0%, transparent 20%);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 214, 231, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(212, 241, 249, 0.5) 0%, transparent 20%);
         }
-        
+
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -45,7 +46,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .container::before {
             content: "";
             position: absolute;
@@ -58,17 +59,22 @@
             pointer-events: none;
             animation: rotate 60s linear infinite;
         }
-        
+
         @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         h1 {
             text-align: center;
             font-size: 3.5em;
             margin-bottom: 15px;
-            text-shadow: 4px 4px 0 rgba(255,214,231,0.5), 8px 8px 0 rgba(255,214,231,0.3);
+            text-shadow: 4px 4px 0 rgba(255, 214, 231, 0.5), 8px 8px 0 rgba(255, 214, 231, 0.3);
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
@@ -80,12 +86,12 @@
             -webkit-text-fill-color: transparent;
             padding: 0 20px;
         }
-        
+
         h1:hover {
             transform: translateX(-50%) scale(1.05);
-            text-shadow: 6px 6px 0 rgba(255,214,231,0.5), 12px 12px 0 rgba(255,214,231,0.3);
+            text-shadow: 6px 6px 0 rgba(255, 214, 231, 0.5), 12px 12px 0 rgba(255, 214, 231, 0.3);
         }
-        
+
         h1::after {
             content: "";
             position: absolute;
@@ -98,7 +104,7 @@
             z-index: -1;
             opacity: 0.5;
         }
-        
+
         .menu {
             display: flex;
             justify-content: center;
@@ -113,7 +119,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .menu::before {
             content: "";
             position: absolute;
@@ -125,7 +131,7 @@
             opacity: 0.3;
             z-index: 0;
         }
-        
+
         .control-group {
             display: flex;
             align-items: center;
@@ -133,14 +139,14 @@
             position: relative;
             z-index: 1;
         }
-        
+
         label {
             font-weight: bold;
             color: var(--candy-pink);
             font-size: 1.1em;
             text-shadow: 1px 1px 0 white;
         }
-        
+
         input[type="range"] {
             width: 220px;
             height: 25px;
@@ -151,7 +157,7 @@
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
             border: 3px solid white;
         }
-        
+
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 30px;
@@ -163,12 +169,12 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: all 0.2s;
         }
-        
+
         input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.1);
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
-        
+
         .word-count {
             font-weight: bold;
             color: var(--candy-pink);
@@ -181,7 +187,7 @@
             border: 2px solid var(--candy-pink);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         button {
             background: linear-gradient(145deg, var(--candy-pink), var(--candy-orange));
             color: white;
@@ -198,7 +204,7 @@
             z-index: 1;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
         }
-        
+
         button::before {
             content: "";
             position: absolute;
@@ -211,21 +217,21 @@
             z-index: -1;
             transition: opacity 0.3s;
         }
-        
+
         button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 0 #D44D7D, 0 15px 20px rgba(255, 105, 157, 0.4);
         }
-        
+
         button:hover::before {
             opacity: 1;
         }
-        
+
         button:active {
             transform: translateY(2px);
             box-shadow: 0 2px 0 #D44D7D, 0 5px 10px rgba(255, 105, 157, 0.3);
         }
-        
+
         .timer {
             text-align: center;
             font-size: 1.8em;
@@ -242,19 +248,19 @@
             border: 3px solid #FFD6E7;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .timer::before {
             content: "⏱";
             margin-right: 10px;
         }
-        
+
         .word-panel {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 20px;
             margin-top: 25px;
         }
-        
+
         .word-card {
             background: var(--candy-blue);
             border-radius: 20px;
@@ -275,23 +281,48 @@
             padding: 10px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* 为不同卡片设置不同的糖果色 */
-        .word-card:nth-child(8n+1) { background: var(--candy-red); }
-        .word-card:nth-child(8n+2) { background: var(--candy-orange); }
-        .word-card:nth-child(8n+3) { background: var(--candy-yellow); color: #5A3D5C; text-shadow: none; }
-        .word-card:nth-child(8n+4) { background: var(--candy-green); }
-        .word-card:nth-child(8n+5) { background: var(--candy-mint); }
-        .word-card:nth-child(8n+6) { background: var(--candy-blue); }
-        .word-card:nth-child(8n+7) { background: var(--candy-purple); }
-        .word-card:nth-child(8n+8) { background: var(--candy-pink); }
-        
+        .word-card:nth-child(8n + 1) {
+            background: var(--candy-red);
+        }
+
+        .word-card:nth-child(8n + 2) {
+            background: var(--candy-orange);
+        }
+
+        .word-card:nth-child(8n + 3) {
+            background: var(--candy-yellow);
+            color: #5A3D5C;
+            text-shadow: none;
+        }
+
+        .word-card:nth-child(8n + 4) {
+            background: var(--candy-green);
+        }
+
+        .word-card:nth-child(8n + 5) {
+            background: var(--candy-mint);
+        }
+
+        .word-card:nth-child(8n + 6) {
+            background: var(--candy-blue);
+        }
+
+        .word-card:nth-child(8n + 7) {
+            background: var(--candy-purple);
+        }
+
+        .word-card:nth-child(8n + 8) {
+            background: var(--candy-pink);
+        }
+
         .word-card:hover {
             transform: translateY(-8px) scale(1.05);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             z-index: 2;
         }
-        
+
         .word-card::before {
             content: "";
             position: absolute;
@@ -304,29 +335,41 @@
             opacity: 0;
             transition: all 0.3s;
         }
-        
+
         .word-card:hover::before {
             opacity: 0.6;
             animation: rotate 10s linear infinite;
         }
-        
+
         .word-card.flipped {
             background: linear-gradient(145deg, #FFD6E7, #FFC0CB) !important;
             color: transparent !important;
             transform: rotateY(180deg);
         }
-        
+
         .word-card.matched {
             animation: matchAnimation 0.5s forwards;
             pointer-events: none;
         }
-        
+
         @keyframes matchAnimation {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.8; background: white; }
-            100% { transform: scale(0); opacity: 0; }
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+                background: white;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
         }
-        
+
         .word-card::after {
             content: '?';
             position: absolute;
@@ -336,15 +379,15 @@
             transition: all 0.3s;
             text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
         }
-        
+
         .word-card.flipped::after {
             opacity: 1;
         }
-        
+
         .file-input {
             display: none;
         }
-        
+
         .builtin-wordbanks {
             display: flex;
             flex-wrap: wrap;
@@ -353,7 +396,7 @@
             justify-content: center;
             margin-bottom: 20px;
         }
-        
+
         .builtin-wordbank {
             background: linear-gradient(145deg, var(--candy-pink), var(--candy-purple));
             padding: 8px 16px;
@@ -368,7 +411,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .builtin-wordbank::before {
             content: "";
             position: absolute;
@@ -380,21 +423,21 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        
+
         .builtin-wordbank:hover {
             transform: translateY(-3px);
             box-shadow: 0 7px 0 var(--candy-purple), 0 10px 15px rgba(163, 107, 224, 0.4);
         }
-        
+
         .builtin-wordbank:hover::before {
             opacity: 1;
         }
-        
+
         .builtin-wordbank:active {
             transform: translateY(2px);
             box-shadow: 0 2px 0 var(--candy-purple), 0 3px 5px rgba(163, 107, 224, 0.3);
         }
-        
+
         .volume-control {
             position: fixed;
             bottom: 20px;
@@ -411,55 +454,84 @@
             z-index: 100;
             border: 3px solid var(--candy-pink);
         }
-        
+
         .volume-control i {
             font-size: 24px;
             color: var(--candy-pink);
         }
-        
+
+        /* 小屏幕设备（如手机） */
         @media (max-width: 600px) {
             .menu {
                 flex-direction: column;
                 align-items: stretch;
             }
-            
+
             .control-group {
                 justify-content: space-between;
             }
-            
+
             .word-panel {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             h1 {
                 font-size: 2.5em;
             }
-            
+
             .timer {
                 font-size: 1.5em;
+            }
+
+            input[type="range"] {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .builtin-wordbank {
+                width: calc(50% - 6px);
+            }
+        }
+
+        /* 中等屏幕设备（如平板） */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .container {
+                padding: 20px;
+            }
+
+            .word-panel {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            h1 {
+                font-size: 3em;
             }
         }
     </style>
     <!-- 使用Font Awesome图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <h1 id="game-title">糖果单词消消乐</h1>
-        
+
         <div class="menu">
             <div class="control-group">
                 <label for="word-count">单词对数:</label>
                 <input type="range" id="word-count" min="5" max="50" value="10">
                 <span class="word-count" id="word-count-display">10</span>
             </div>
-            
+
             <button id="import-btn"><i class="fas fa-file-import"></i> 导入词表</button>
             <input type="file" id="file-input" class="file-input" accept=".xlsx,.xls,.csv">
-            
+
             <button id="start-btn"><i class="fas fa-play"></i> 开始游戏</button>
         </div>
-        
+
         <div class="builtin-wordbanks" id="builtin-wordbanks">
             <div class="builtin-wordbank" data-wordbank="fruits"><i class="fas fa-apple-alt"></i> 水果单词</div>
             <div class="builtin-wordbank" data-wordbank="animals"><i class="fas fa-paw"></i> 动物单词</div>
@@ -467,9 +539,9 @@
             <div class="builtin-wordbank" data-wordbank="colors"><i class="fas fa-palette"></i> 颜色单词</div>
             <div class="builtin-wordbank" data-wordbank="family"><i class="fas fa-home"></i> 家庭成员</div>
         </div>
-        
+
         <div class="timer" id="timer">耗时: 0秒</div>
-        
+
         <div class="word-panel" id="word-panel"></div>
     </div>
 
@@ -574,7 +646,7 @@
             mismatch: new Howl({ src: ['mismatch.mp3'] }),
             gameStart: new Howl({ src: ['game-start.mp3'] }),
             gameWin: new Howl({ src: ['game-over.mp3'] }),
-            background: new Howl({ 
+            background: new Howl({
                 src: ['background.mp3'],
                 loop: true,
                 volume: 0.3
@@ -615,7 +687,7 @@
             if (gameState.soundEnabled) {
                 sounds.background.play();
             }
-            
+
             // 标题点击事件
             elements.title.addEventListener('click', () => {
                 const newTitle = prompt('请输入新的游戏标题:', elements.title.textContent);
@@ -629,7 +701,7 @@
                 const count = elements.wordCountInput.value;
                 elements.wordCountDisplay.textContent = count;
                 gameState.totalPairs = parseInt(count);
-                
+
                 if (gameState.wordPairs.length > 0) {
                     prepareGame();
                 }
@@ -664,7 +736,7 @@
         // 切换音效
         function toggleSound() {
             gameState.soundEnabled = !gameState.soundEnabled;
-            
+
             if (gameState.soundEnabled) {
                 Howler.mute(false);
                 elements.volumeControl.innerHTML = '<i class="fas fa-volume-up"></i>';
@@ -680,7 +752,7 @@
             if (builtinWordBanks[wordbank]) {
                 gameState.wordPairs = builtinWordBanks[wordbank];
                 prepareGame();
-                
+
                 if (gameState.soundEnabled) {
                     sounds.flip.play();
                 }
@@ -693,22 +765,22 @@
             if (!file) return;
 
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 try {
                     const data = new Uint8Array(e.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
                     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
-                    
+
                     // 过滤空行和无效数据
                     const wordPairs = jsonData
-                        .filter(row => row.length >= 2 && row[0] && row[1])
-                        .map(row => [String(row[0]), String(row[1])]);
-                    
+                       .filter(row => row.length >= 2 && row[0] && row[1])
+                       .map(row => [String(row[0]), String(row[1])]);
+
                     if (wordPairs.length > 0) {
                         gameState.wordPairs = wordPairs;
                         prepareGame();
-                        
+
                         if (gameState.soundEnabled) {
                             sounds.flip.play();
                         }
@@ -730,14 +802,14 @@
             gameState.matchedPairs = 0;
             gameState.flippedCards = [];
             elements.timer.textContent = '耗时: 0秒';
-            
+
             // 选择要显示的单词对
             const selectedPairs = selectRandomPairs(gameState.wordPairs, gameState.totalPairs);
             gameState.displayedWords = createWordCards(selectedPairs);
-            
+
             // 渲染单词面板
             renderWordPanel();
-            
+
             gameState.isGameReady = true;
             elements.startBtn.innerHTML = '<i class="fas fa-play"></i> 开始游戏';
         }
@@ -745,10 +817,10 @@
         // 从词表中随机选择指定数量的单词对
         function selectRandomPairs(pairs, count) {
             if (!pairs || pairs.length === 0) return [];
-            
+
             // 如果请求的数量大于可用数量，则使用最大可用数量
             const maxPairs = Math.min(count, pairs.length);
-            
+
             // 复制数组以避免修改原数组
             const shuffled = [...pairs].sort(() => 0.5 - Math.random());
             return shuffled.slice(0, maxPairs);
@@ -757,7 +829,7 @@
         // 创建单词卡片数组
         function createWordCards(pairs) {
             const cards = [];
-            
+
             pairs.forEach(pair => {
                 // 每对单词创建两张卡片
                 cards.push({
@@ -766,7 +838,7 @@
                     isFlipped: false,
                     isMatched: false
                 });
-                
+
                 cards.push({
                     text: pair[1],
                     pairId: pair.join('|'),
@@ -774,7 +846,7 @@
                     isMatched: false
                 });
             });
-            
+
             // 打乱卡片顺序
             return cards.sort(() => 0.5 - Math.random());
         }
@@ -782,21 +854,21 @@
         // 渲染单词面板
         function renderWordPanel() {
             elements.wordPanel.innerHTML = '';
-            
+
             gameState.displayedWords.forEach((word, index) => {
                 if (word.isMatched) return; // 已匹配的卡片不渲染
-                
+
                 const card = document.createElement('div');
                 card.className = 'word-card';
                 if (word.isFlipped) card.classList.add('flipped');
-                
+
                 if (!word.isFlipped) {
                     card.textContent = word.text;
                 }
-                
+
                 card.dataset.index = index;
                 card.addEventListener('click', handleCardClick);
-                
+
                 elements.wordPanel.appendChild(card);
             });
         }
@@ -804,27 +876,27 @@
         // 处理卡片点击事件
         function handleCardClick(event) {
             if (!gameState.isGameStarted || !gameState.isGameReady) return;
-            
+
             const index = parseInt(event.currentTarget.dataset.index);
             const card = gameState.displayedWords[index];
-            
+
             // 如果卡片已经匹配或已经翻开，则忽略点击
             if (card.isMatched || card.isFlipped || gameState.flippedCards.length >= 2) {
                 return;
             }
-            
+
             // 播放翻牌音效
             if (gameState.soundEnabled) {
                 sounds.flip.play();
             }
-            
+
             // 翻开卡片
             card.isFlipped = true;
             gameState.flippedCards.push(index);
-            
+
             // 重新渲染面板
             renderWordPanel();
-            
+
             // 检查是否匹配
             if (gameState.flippedCards.length === 2) {
                 checkForMatch();
@@ -836,22 +908,22 @@
             const [index1, index2] = gameState.flippedCards;
             const card1 = gameState.displayedWords[index1];
             const card2 = gameState.displayedWords[index2];
-            
+
             if (card1.pairId === card2.pairId) {
                 // 匹配成功
                 if (gameState.soundEnabled) {
                     sounds.match.play();
                 }
-                
+
                 card1.isMatched = true;
                 card2.isMatched = true;
                 gameState.matchedPairs++;
-                
+
                 // 检查游戏是否结束
                 if (gameState.matchedPairs === gameState.totalPairs) {
                     endGame();
                 }
-                
+
                 gameState.flippedCards = [];
                 // 重新渲染面板，匹配的卡片会消失
                 setTimeout(() => {
@@ -862,7 +934,7 @@
                 if (gameState.soundEnabled) {
                     sounds.mismatch.play();
                 }
-                
+
                 // 匹配失败，翻回去
                 setTimeout(() => {
                     card1.isFlipped = false;
@@ -879,31 +951,31 @@
                 alert('请先选择单词库或导入词表！');
                 return;
             }
-            
+
             if (gameState.isGameStarted) {
                 // 重新开始游戏
                 prepareGame();
                 return;
             }
-            
+
             // 播放游戏开始音效
             if (gameState.soundEnabled) {
                 sounds.gameStart.play();
             }
-            
+
             gameState.isGameStarted = true;
             gameState.startTime = new Date();
             elements.startBtn.innerHTML = '<i class="fas fa-redo"></i> 重新开始';
-            
+
             // 启动计时器
             gameState.timerInterval = setInterval(updateTimer, 1000);
-            
+
             // 将所有卡片翻面
             gameState.displayedWords.forEach(card => {
                 card.isFlipped = true;
             });
             renderWordPanel();
-            
+
             // 3秒后翻回去
             setTimeout(() => {
                 gameState.displayedWords.forEach(card => {
@@ -923,15 +995,15 @@
         // 结束游戏
         function endGame() {
             clearInterval(gameState.timerInterval);
-            
+
             const now = new Date();
             const elapsed = Math.floor((now - gameState.startTime) / 1000);
-            
+
             // 播放胜利音效
             if (gameState.soundEnabled) {
                 sounds.gameWin.play();
             }
-            
+
             // 庆祝效果
             confetti({
                 particleCount: 200,
@@ -939,7 +1011,7 @@
                 origin: { y: 0.6 },
                 colors: ['#FF6B6B', '#FFA36B', '#FFD56B', '#A3E06B', '#6BE0A3', '#6BA3E0', '#A36BE0', '#E06BA3']
             });
-            
+
             setTimeout(() => {
                 alert(`🎉 恭喜你完成了游戏！\n用时: ${elapsed}秒`);
             }, 800);
@@ -949,4 +1021,5 @@
         init();
     </script>
 </body>
+
 </html>
