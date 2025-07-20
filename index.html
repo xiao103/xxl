@@ -795,36 +795,48 @@
         }
 
         // 准备游戏
-        function prepareGame() {
-            clearInterval(gameState.timerInterval);
-            gameState.isGameStarted = false;
-            gameState.isGameReady = false;
-            gameState.matchedPairs = 0;
-            gameState.flippedCards = [];
-            elements.timer.textContent = '耗时: 0秒';
+    function prepareGame() {
+        clearInterval(gameState.timerInterval);
+        gameState.isGameStarted = false;
+        gameState.isGameReady = false;
+        gameState.matchedPairs = 0;
+        gameState.flippedCards = [];
+        elements.timer.textContent = '耗时: 0秒';
 
-            // 选择要显示的单词对
-            const selectedPairs = selectRandomPairs(gameState.wordPairs, gameState.totalPairs);
-            gameState.displayedWords = createWordCards(selectedPairs);
-
-            // 渲染单词面板
-            renderWordPanel();
-
-            gameState.isGameReady = true;
-            elements.startBtn.innerHTML = '<i class="fas fa-play"></i> 开始游戏';
+        // 确保单词对数不超过可用单词对数
+        const availablePairs = gameState.wordPairs.length;
+        const requestedPairs = Math.min(gameState.totalPairs, availablePairs);
+        
+        // 更新滑块最大值和当前值
+        elements.wordCountInput.max = availablePairs;
+        if (gameState.totalPairs > availablePairs) {
+            gameState.totalPairs = availablePairs;
+            elements.wordCountInput.value = availablePairs;
+            elements.wordCountDisplay.textContent = availablePairs;
         }
 
-        // 从词表中随机选择指定数量的单词对
-        function selectRandomPairs(pairs, count) {
-            if (!pairs || pairs.length === 0) return [];
+        // 选择要显示的单词对
+        const selectedPairs = selectRandomPairs(gameState.wordPairs, gameState.totalPairs);
+        gameState.displayedWords = createWordCards(selectedPairs);
 
-            // 如果请求的数量大于可用数量，则使用最大可用数量
-            const maxPairs = Math.min(count, pairs.length);
+        // 渲染单词面板
+        renderWordPanel();
 
-            // 复制数组以避免修改原数组
-            const shuffled = [...pairs].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, maxPairs);
-        }
+        gameState.isGameReady = true;
+        elements.startBtn.innerHTML = '<i class="fas fa-play"></i> 开始游戏';
+    }
+
+    // 从词表中随机选择指定数量的单词对
+    function selectRandomPairs(pairs, count) {
+        if (!pairs || pairs.length === 0) return [];
+        
+        // 确保请求的数量不超过可用数量
+        const maxPairs = Math.min(count, pairs.length);
+        
+        // 复制数组以避免修改原数组
+        const shuffled = [...pairs].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, maxPairs);
+    }
 
         // 创建单词卡片数组
         function createWordCards(pairs) {
