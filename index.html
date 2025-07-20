@@ -12,6 +12,7 @@
     <!-- 引入howler.js用于音效 -->
     <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
     <style>
+        /* 莫兰迪色系 */
         :root {
             --mauve: #D8B4A0;
             --dusty-pink: #DDBEA9;
@@ -22,6 +23,16 @@
             --soft-white: #F8F4E9;
             --light-gray: #E2DED3;
             --dark-taupe: #4A4A3C;
+            
+            /* 恢复卡片糖果色 */
+            --candy-red: #FF6B6B;
+            --candy-orange: #FFA36B;
+            --candy-yellow: #FFD56B;
+            --candy-green: #A3E06B;
+            --candy-mint: #6BE0A3;
+            --candy-blue: #6BA3E0;
+            --candy-purple: #A36BE0;
+            --candy-pink: #E06BA3;
         }
 
         body {
@@ -270,8 +281,9 @@
             padding: 20px;
         }
 
+        /* 卡片恢复为糖果色 */
         .word-card {
-            background: var(--olive);
+            background: var(--candy-blue);
             border-radius: 20px;
             height: 90px;
             display: flex;
@@ -284,46 +296,46 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
-            border: 4px solid var(--soft-white);
-            color: var(--soft-white);
+            border: 4px solid white;
+            color: white;
             text-align: center;
             padding: 10px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* 为不同卡片设置不同的莫兰迪色 */
+        /* 为不同卡片设置不同的糖果色 */
         .word-card:nth-child(8n + 1) {
-            background: var(--mauve);
+            background: var(--candy-red);
         }
 
         .word-card:nth-child(8n + 2) {
-            background: var(--dusty-pink);
+            background: var(--candy-orange);
         }
 
         .word-card:nth-child(8n + 3) {
-            background: var(--sage);
-            color: var(--dark-taupe);
+            background: var(--candy-yellow);
+            color: #5A3D5C;
             text-shadow: none;
         }
 
         .word-card:nth-child(8n + 4) {
-            background: var(--olive);
+            background: var(--candy-green);
         }
 
         .word-card:nth-child(8n + 5) {
-            background: var(--taupe);
+            background: var(--candy-mint);
         }
 
         .word-card:nth-child(8n + 6) {
-            background: var(--sage);
+            background: var(--candy-blue);
         }
 
         .word-card:nth-child(8n + 7) {
-            background: var(--olive);
+            background: var(--candy-purple);
         }
 
         .word-card:nth-child(8n + 8) {
-            background: var(--mauve);
+            background: var(--candy-pink);
         }
 
         .word-card:hover {
@@ -339,7 +351,7 @@
             left: -10px;
             right: -10px;
             bottom: -10px;
-            border: 3px dashed var(--soft-white);
+            border: 3px dashed white;
             border-radius: 25px;
             opacity: 0;
             transition: all 0.3s;
@@ -351,7 +363,7 @@
         }
 
         .word-card.flipped {
-            background: linear-gradient(145deg, var(--pale-pink), var(--light-gray)) !important;
+            background: linear-gradient(145deg, #FFD6E7, #FFC0CB) !important;
             color: transparent !important;
             transform: rotateY(180deg);
         }
@@ -370,7 +382,7 @@
             50% {
                 transform: scale(1.2);
                 opacity: 0.8;
-                background: var(--soft-white);
+                background: white;
             }
 
             100% {
@@ -382,7 +394,7 @@
         .word-card::after {
             content: '?';
             position: absolute;
-            color: var(--soft-white);
+            color: white;
             font-size: 2.5em;
             opacity: 0;
             transition: all 0.3s;
