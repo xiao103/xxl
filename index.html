@@ -30,6 +30,12 @@
             --candy-pink: #E06BA3;
         }
 
+<button id="menu-toggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="mobile-drawer" id="mobile-drawer">
+      <!-- 内容和左侧面板一样，可以直接复制 left-panel 的内容过来（注意 id 要加 -m 区分） -->
+      </div>
+
+        
         body {
             font-family: 'Comic Sans MS', 'Marker Felt', '华文琥珀', cursive, sans-serif;
             background-color: var(--light);
@@ -590,6 +596,49 @@
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
         }
+
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 101;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 42px; height: 42px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+  .left-panel { display: none !important; }
+  .mobile-drawer {
+    display: block !important;
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 75vw;
+    z-index: 200;
+    background: white;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 16px rgba(52,49,76,0.13);
+    transition: transform 0.3s;
+    overflow-y: auto;
+    padding-top: 42px;
+    border-radius: 0 18px 18px 0;
+  }
+  .mobile-drawer.open { transform: translateX(0); }
+  .word-panel { grid-template-columns: repeat(2, 1fr); gap: 7px; padding: 7px; max-height: 65vh; overflow-y: auto; }
+  .word-card { height: clamp(54px,18vw,70px); font-size: clamp(0.9em, 2.8vw,1.03em); border-radius: 10px; padding: 4px; }
+  .volume-control { width: 36px; height: 36px; bottom: 5px; right: 5px; opacity: 0.65; }
+}
+@media (max-width: 480px) {
+  .word-panel { grid-template-columns: repeat(1,1fr); }
+  .word-card { height: 50px; font-size: 1em; }
+}    
     </style>
     <!-- 使用Font Awesome图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -631,54 +680,112 @@
     </div>
 
     <script>
+// 菜单按钮与抽屉功能
+const menuToggle = document.getElementById('menu-toggle');
+const mobileDrawer = document.getElementById('mobile-drawer');
+menuToggle.addEventListener('click',()=>{
+  mobileDrawer.classList.toggle('open');
+});
+
+// 移动端滑块/按钮/词库同步主控
+const syncMobileControls = ()=>{
+  const wcMain = document.getElementById('word-count');
+  const wcDisplayMain = document.getElementById('word-count-display');
+  const wcMobile = document.getElementById('word-count-m');
+  const wcDisplayMobile = document.getElementById('word-count-display-m');
+  wcMobile.value = wcMain.value;
+  wcDisplayMobile.textContent = wcDisplayMain.textContent;
+  wcMobile.addEventListener('input',()=>{
+    wcMain.value = wcMobile.value;
+    wcMain.dispatchEvent(new Event('input'));
+  });
+  wcMain.addEventListener('input',()=>{
+    wcMobile.value = wcMain.value;
+    wcDisplayMobile.textContent = wcMain.value;
+  });
+};
+window.onload = syncMobileControls;
+
+// 移动端按钮事件
+const startBtnMain = document.getElementById('start-btn');
+const startBtnMobile = document.getElementById('start-btn-m');
+startBtnMobile.addEventListener('click',()=>{
+  mobileDrawer.classList.remove('open');
+  startBtnMain.click();
+});
+const importBtnMain = document.getElementById('import-btn');
+const importBtnMobile = document.getElementById('import-btn-m');
+const fileInputMain = document.getElementById('file-input');
+const fileInputMobile = document.getElementById('file-input-m');
+importBtnMobile.addEventListener('click',()=>{
+  fileInputMobile.click();
+});
+fileInputMobile.addEventListener('change',(e)=>{
+  fileInputMain.files = e.target.files;
+  fileInputMain.dispatchEvent(new Event('change'));
+});
+// 移动端词库点击事件
+const builtinWordBanksMain = document.getElementById('builtin-wordbanks');
+const builtinWordBanksMobile = document.getElementById('builtin-wordbanks-m');
+builtinWordBanksMobile.addEventListener('click', (e) => {
+  if (e.target.classList.contains('builtin-wordbank')) {
+    const wordbank = e.target.dataset.wordbank;
+    const targetMain = builtinWordBanksMain.querySelector(`[data-wordbank='${wordbank}']`);
+    targetMain.click();
+    mobileDrawer.classList.remove('open');
+  }
+});
+
+
+        
         // 内置单词库
         const builtinWordBanks = {
             fruits: [
-                ['apple', '苹果'],
+                ['apple', '苹果']，
                 ['banana', '香蕉'],
                 ['orange', '橙子'],
-                ['grape', '葡萄'],
-                ['watermelon', '西瓜'],
-                ['strawberry', '草莓'],
-                ['pineapple', '菠萝'],
-                ['pear', '梨'],
-                ['peach', '桃子'],
+                ['grape', '葡萄']，
+                ['watermelon'， '西瓜']，
+                ['strawberry'， '草莓']，
+                ['pineapple'， '菠萝'],
+                ['pear', '梨']，
+                ['peach', '桃子']，
                 ['cherry', '樱桃'],
                 ['mango', '芒果'],
                 ['lemon', '柠檬'],
-                ['coconut', '椰子'],
-                ['kiwi', '猕猴桃'],
-                ['blueberry', '蓝莓']
-            ],
+                ['coconut'， '椰子'],
+                ['kiwi'， '猕猴桃']，
+                ['blueberry'， '蓝莓']
+            ]，
             animals: [
                 ['dog', '狗'],
                 ['cat', '猫'],
-                ['elephant', '大象'],
-                ['lion', '狮子'],
+                ['elephant'， '大象'],
+                ['lion', '狮子']，
                 ['tiger', '老虎'],
-                ['monkey', '猴子'],
-                ['panda', '熊猫'],
+                ['monkey'， '猴子']，
+                ['panda'， '熊猫']，
                 ['rabbit', '兔子'],
                 ['bear', '熊'],
-                ['giraffe', '长颈鹿'],
-                ['zebra', '斑马'],
+                ['giraffe'， '长颈鹿']，
+                ['zebra'， '斑马']，
                 ['kangaroo', '袋鼠'],
                 ['penguin', '企鹅'],
                 ['dolphin', '海豚'],
                 ['whale', '鲸鱼']
-            ],
+            ]，
             school: [
-                ['pen', '钢笔'],
-                ['pencil', '铅笔'],
-                ['book', '书'],
+                ['pen'， '钢笔']，
+                ['pencil'， '铅笔']，
+                ['book'， '书'],
                 ['notebook', '笔记本'],
-                ['eraser', '橡皮'],
-                ['ruler', '尺子'],
-                ['bag', '书包'],
+                ['eraser', '橡皮']，
+                ['ruler', '尺子']，
+                ['bag', '书包']，
                 ['desk', '课桌'],
                 ['chair', '椅子'],
                 ['blackboard', '黑板'],
-                ['teacher', '老师'],
+                ['teacher', '老师']，
                 ['student', '学生'],
                 ['classroom', '教室'],
                 ['homework', '家庭作业'],
